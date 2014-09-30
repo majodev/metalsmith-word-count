@@ -1,0 +1,24 @@
+{
+  "name": "metalsmith-wordcount",
+  "version": "0.0.1",
+  "description": "Metalsmith plugin to compute wordcount / average reading time of all paragraphs in a html file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "metalsmith",
+    "plugin",
+    "wordcount",
+    "reading",
+    "time",
+    "paragraphs",
+    "html"
+  ],
+  "author": "Mario Ranftl",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.17.0",
+    "lodash": "^2.4.1"
+  }
+}
