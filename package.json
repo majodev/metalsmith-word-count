@@ -18,6 +18,10 @@
   ],
   "author": "majodev <mario@ranf.tl> (http://majodev.github.io/)",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/majodev/metalsmith-wordcount/issues"
+  },
+  "homepage": "https://github.com/majodev/metalsmith-wordcount",
   "dependencies": {
     "cheerio": "^0.17.0",
     "lodash": "^2.4.1"

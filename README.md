@@ -2,8 +2,10 @@
 
 > Metalsmith plugin to compute wordcount / average reading time of all paragraphs in a html file.  
 
-Based on [assemble-middleware-wordcount by Jon Schlinkert](https://github.com/assemble/assemble-middleware-wordcount)
-Extracted from [majodev.github.io](http://majodev.github.io) and published separately.
+Based on [assemble-middleware-wordcount by Jon Schlinkert](https://github.com/assemble/assemble-middleware-wordcount)  
+Extracted from [majodev.github.io](http://majodev.github.io).
+
+As part the my note *"[Extracting libs from a node.js project: Publishing my metalsmith plugins](http://ranf.tl/2014/10/01/extracting-libs-from-a-node-js-project/)"*.
 
 ## Installation
 
@@ -28,21 +30,21 @@ Should also work in similar fashion with the `metalsmith.json` counterpart.
 
 ## Options
 
-`workcount` accepts an hash to provide a few customization options.
+`wordcount` accepts an hash to provide a few customization options.
 
-### `metaKeyCount`
+### `metaKeyCount` (optional)
 `String`: Name of the key that will store the word count in a file's metadata.  
 default: `wordCount`
 
-### `metaKeyReadingTime`
+### `metaKeyReadingTime` (optional)
 `String`: Name of the key that will store the estimated reading time in a file's metadata.  
 default: `readingTime`
 
-### `speed`
+### `speed` (optional)
 `int`: How fast one normally reads, see http://onforb.es/1crk3KF  
 default: `300`
 
-### `seconds`
+### `seconds` (optional)
 `bool`: If readingTime should be outputted in seconds  
 default: `false`
 
