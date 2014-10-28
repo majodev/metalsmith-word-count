@@ -1,4 +1,4 @@
-#metalsmith-wordcount
+#metalsmith-word-count
 
 > Metalsmith plugin to compute wordcount / average reading time of all paragraphs in a html file.  
 
@@ -10,14 +10,14 @@ As part the my note *"[Extracting libs from a node.js project: Publishing my met
 ## Installation
 
 ```bash
-npm install --save metalsmith-wordcount
+npm install --save metalsmith-word-count
 ```
 
 ## Usage
 
 ```javascript
 var Metalsmith = require("metalsmith");
-var wordcount = require("metalsmith-wordcount");
+var wordcount = require("metalsmith-word-count");
 
 
 Metalsmith(__dirname)
