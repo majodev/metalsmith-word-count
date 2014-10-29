@@ -18,9 +18,10 @@ function plugin(options) {
   return function(files, metalsmith, done) {
     var opts = options || {};
 
+    // setup defaults
     // See http://onforb.es/1crk3KF
     opts.speed = opts.speed || 300;
-    opts.seconds = opts.seconds || false;
+    opts.seconds = opts.seconds || false; // if output should include seconds "x minutes, x seconds"
     opts.metaKeyCount = opts.metaKeyCount || "wordCount";
     opts.metaKeyReadingTime = opts.metaKeyReadingTime || "readingTime";
 

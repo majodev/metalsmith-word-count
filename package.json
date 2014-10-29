@@ -1,11 +1,14 @@
 {
   "name": "metalsmith-word-count",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Metalsmith plugin to compute wordcount / average reading time of all paragraphs in a html file",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/majodev/metalsmith-word-count.git"
+  },
+  "scripts": {
+    "test": "mocha ./spec/index.js"
   },
   "keywords": [
     "metalsmith",
@@ -25,5 +28,9 @@
   "dependencies": {
     "cheerio": "^0.17.0",
     "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "chai": "~1.8.0",
+    "metalsmith": "^1.0.1"
   }
 }
