@@ -48,6 +48,10 @@ default: `300`
 `bool`: If readingTime should be outputted in seconds  
 default: `false`
 
+### `raw` (optional)
+`bool`: If readingTime should be returned as raw integer (in minutes or seconds)  
+default: `false`
+
 ## Full example with options set
 
 ```javascript
@@ -57,7 +61,8 @@ Metalsmith(__dirname)
     metaKeyCount: "wordCount",
     metaKeyReadingTime: "readingTime",
     speed: 300,
-    seconds: false
+    seconds: false,
+    raw: false
   }))
   // ...
 ```

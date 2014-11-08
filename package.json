@@ -1,6 +1,6 @@
 {
   "name": "metalsmith-word-count",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Metalsmith plugin to compute wordcount / average reading time of all paragraphs in a html file",
   "main": "index.js",
   "repository": {

@@ -51,4 +51,35 @@ describe('metalsmith-word-count', function() {
         done();
       });
   });
+  it('estimate can also be returned as raw minutes', function(done) {
+    Metalsmith('spec/fixture')
+      .use(wordcount({
+        raw: true
+      }))
+      .build(function(err, files) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(files["30000words.html"].readingTime).to.be.equal(100);
+        expect(files["30000words.html"].wordCount).to.be.equal(30000);
+        done();
+      });
+  });
+  it('estimate can also be returned as raw seconds', function(done) {
+    Metalsmith('spec/fixture')
+      .use(wordcount({
+        raw: true,
+        seconds: true
+      }))
+      .build(function(err, files) {
+        if (err) {
+          console.error(err);
+        }
+
+        expect(files["30000words.html"].readingTime).to.be.equal(6000);
+        expect(files["30000words.html"].wordCount).to.be.equal(30000);
+        done();
+      });
+  });
 });

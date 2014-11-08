@@ -19,9 +19,10 @@ function plugin(options) {
     var opts = options || {};
 
     // setup defaults
-    // See http://onforb.es/1crk3KF
-    opts.speed = opts.speed || 300;
-    opts.seconds = opts.seconds || false; // if output should include seconds "x minutes, x seconds"
+
+    opts.speed = opts.speed || 300; // See http://onforb.es/1crk3KF
+    opts.seconds = opts.seconds || false; // if output should include seconds (formatted "x minutes, x seconds")
+    opts.raw = opts.raw || false; // if output should be raw integers (without min or sec)
     opts.metaKeyCount = opts.metaKeyCount || "wordCount";
     opts.metaKeyReadingTime = opts.metaKeyReadingTime || "readingTime";
 
@@ -59,12 +60,20 @@ function processHTML(contents, opts) {
   if (opts.seconds === true) {
     min = Math.floor(count / opts.speed);
     sec = Math.floor(count % opts.speed / (opts.speed / 60));
-    mins = min + ' minute' + (min === 1 ? '' : 's') + ', ';
-    secs = sec + ' second' + (sec === 1 ? '' : 's');
-    est = (min > 0) ? mins + secs : secs;
+    if (opts.raw === false) {
+      mins = min + ' minute' + (min === 1 ? '' : 's') + ', ';
+      secs = sec + ' second' + (sec === 1 ? '' : 's');
+      est = (min > 0) ? mins + secs : secs;
+    } else {
+      est = (min * 60) + sec;
+    }
   } else {
     min = Math.ceil(count / opts.speed);
-    est = min + ' min';
+    if (opts.raw === false) {
+      est = min + ' min';
+    } else {
+      est = min;
+    }
   }
 
   return {
