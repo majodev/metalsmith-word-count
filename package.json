@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "chai": "~1.8.0",
-    "metalsmith": "^1.0.1"
+    "metalsmith": "^1.0.1",
+    "multimatch": "^2.1.0"
   }
 }

@@ -32,6 +32,10 @@ Should also work in similar fashion with the `metalsmith.json` counterpart.
 
 `wordcount` accepts an hash to provide a few customization options.
 
+### `pattern` (optional)
+`String`: Only files that match this pattern will be processed.
+default: `*`
+
 ### `metaKeyCount` (optional)
 `String`: Name of the key that will store the word count in a file's metadata.  
 default: `wordCount`
@@ -58,6 +62,7 @@ default: `false`
 Metalsmith(__dirname)
   // html files are available (e.g. state when markdown was compiled)
   .use(wordcount({
+    pattern: "**/*.md",
     metaKeyCount: "wordCount",
     metaKeyReadingTime: "readingTime",
     speed: 300,

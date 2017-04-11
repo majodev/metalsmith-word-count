@@ -1,6 +1,7 @@
 var cheerio = require('cheerio');
 var _ = require('lodash');
 var extname = require('path').extname;
+var multimatch = require('multimatch');
 
 /**
  * Expose `plugin`.
@@ -25,34 +26,24 @@ function plugin(options) {
     opts.raw = opts.raw || false; // if output should be raw integers (without min or sec)
     opts.metaKeyCount = opts.metaKeyCount || "wordCount";
     opts.metaKeyReadingTime = opts.metaKeyReadingTime || "readingTime";
+    opts.pattern = opts.pattern || "*"
 
     setImmediate(done);
-    Object.keys(files).forEach(function(file) {
-
-      var processedCounts;
-
-      if (isHTML(file) === false) { // only parse HTML-files
-        return;
-      }
-
-      processedCounts = processHTML(files[file].contents, opts);
-
-      files[file][opts.metaKeyCount] = processedCounts.count;
-      files[file][opts.metaKeyReadingTime] = processedCounts.est;
-
-    });
-  };
+    Object.keys(files)
+      .filter(function (p) {
+        // Filter by the pattern option
+        return multimatch(p, opts.pattern).length > 0
+     })
+     .forEach(function(p) {
+        var processedCounts = count(files[p].contents, opts);
+        files[p][opts.metaKeyCount] = processedCounts.count;
+        files[p][opts.metaKeyReadingTime] = processedCounts.est;
+     });
+   };
 }
 
-function processHTML(contents, opts) {
-  var $ = cheerio.load(contents);
-  //var countable = $();
-
-  // Strip HTML tags from content
-  var content = $.html().replace(/(<([^>]+)>)/ig, '');
-
-  // Solution from http://drewschrauf.com/blog/2012/06/13/javascript-wordcount-that-works/
-  var matches = content.match(/[\u0400-\u04FF]+|\S+\s*/g);
+function count(contents, opts) {
+  var matches = (""+contents).match(/[\u0400-\u04FF]+|\S+\s*/g);
   var count = matches !== null ? matches.length : 0;
 
   // Calculate reading time
@@ -70,7 +61,7 @@ function processHTML(contents, opts) {
   } else {
     min = Math.ceil(count / opts.speed);
     if (opts.raw === false) {
-      est = min + ' min';
+      est = min + ' mn';
     } else {
       est = min;
     }
@@ -80,8 +71,4 @@ function processHTML(contents, opts) {
     count: count,
     est: est
   };
-}
-
-function isHTML(file) {
-  return /\.html/.test(extname(file));
 }
